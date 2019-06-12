@@ -1,0 +1,9 @@
+{
+  "editor.rulers": [80],
+  "window.zoomLevel": 0,
+  "workbench.statusBar.feedback.visible": false,
+  "prettier.eslintIntegration": true,
+  "prettier.tslintIntegration": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
+}
