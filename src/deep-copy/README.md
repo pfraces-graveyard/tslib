@@ -1,4 +1,4 @@
-# deepCopy(tree)
+# deepCopy
 
 ## Installation
 

@@ -9,6 +9,10 @@ packages
 
 ## API
 
-### deepCopy(tree)
+### deepCopy
 
 [`deep-copy` documentation](src/deep-copy/README.md)
+
+### onGlobal
+
+[`on-global` documentation](src/on-global/README.md)
