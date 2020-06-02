@@ -1,35 +1,43 @@
-import { interval, forkJoin } from 'rxjs';
-import { map, filter, first, timeout } from 'rxjs/operators';
+import { globalObject } from './global-object';
 
-interface IWindow {
-  [key: string]: any;
+export interface IOptions {
+  interval?: number;
+  timeout?: number;
 }
 
-declare const window: IWindow;
-
-export interface IOnGlobalOptions {
-  interval: number;
-  timeout: number;
-}
-
-export const onGlobal = function (global: string, options?: IOnGlobalOptions) {
-  const defaults: IOnGlobalOptions = {
+export function onGlobal(target: string, options?: IOptions): Promise<void> {
+  const defaults: IOptions = {
     interval: 500,
     timeout: 30000,
   };
 
-  const config: IOnGlobalOptions = { ...defaults, ...options };
+  const config: IOptions = { ...defaults, ...options };
 
-  return interval(config.interval)
-    .pipe(map(() => window[global]))
-    .pipe(filter((val) => typeof val !== 'undefined'))
-    .pipe(first())
-    .pipe(timeout(config.timeout));
-};
+  let interval: ReturnType<typeof setInterval>;
+  let timeout: ReturnType<typeof setTimeout>;
 
-export const onGlobals = function (
-  globals: string[],
-  options?: IOnGlobalOptions
-) {
-  return forkJoin(globals.map((global) => onGlobal(global, options)));
-};
+  const clearTimers = function () {
+    clearInterval(interval);
+    clearTimeout(timeout);
+  };
+
+  return new Promise(function (resolve, reject) {
+    interval = setInterval(function () {
+      if (typeof globalObject[target] !== 'undefined') {
+        clearTimers();
+        resolve(globalObject[target]);
+      }
+    }, config.interval);
+
+    timeout = setTimeout(function () {
+      clearTimers();
+      reject(`Unable to locate ${target} in the global object`);
+    }, config.timeout);
+  });
+}
+
+export function onGlobals(targets: string[], opts?: IOptions): Promise<void> {
+  return Promise.all(
+    targets.map((target) => onGlobal(target, opts))
+  ).then(() => {});
+}

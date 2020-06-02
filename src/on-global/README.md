@@ -1,13 +1,12 @@
 # onGlobal
 
-Wait for a single or multiple global variables to be defined
+Wait for a single or multiple global variables to be defined with a
+Promise-based API
 
 ## Installation
 
-The current implementation is based on [rxjs](https://github.com/ReactiveX/rxjs)
-
 ```
-npm install rxjs @wardays/on-global
+git clone https://github.com/wardays/tslib
 ```
 
 ## Usage
@@ -15,13 +14,29 @@ npm install rxjs @wardays/on-global
 ```ts
 import { onGlobal, onGlobals } from '@wardays/on-global';
 
-// wait for a single global variable
-onGlobal('google').subscribe(() => {
-  // google is available as a global variable
-});
+// Wait for a single global variable
+onGlobal('myGlobal')
+  .then(function () {
+    // `myGlobal` is available as a global variable
+    console.log(`myGlobal: ${myGlobal}`);
+  })
+  .catch(function (err) {
+    // timeout error
+    console.log(`onGlobal error: ${err}`);
+  });
 
-// wait for multiple globals
-onGlobals(['foo', 'bar']).subscribe(() => {
-  // foo and bar are available as global variables
-});
+// Wait for multiple globals
+onGlobals(['foo', 'bar', 'qux'], { timeout: 10000 })
+  .then(function () {
+    // `foo`, `bar` and `qux` are available as global variables
+    log(`foo: ${foo}`);
+    log(`bar: ${bar}`);
+    log(`qux: ${qux}`);
+  })
+  .catch(function (err) {
+    // timeout error
+    log(`onGlobals error: ${err}`);
+  });
 ```
+
+Running example at <https://codesandbox.io/s/on-global-bhksp>
