@@ -29,13 +29,13 @@ onGlobal('myGlobal')
 onGlobals(['foo', 'bar', 'qux'])
   .then(function () {
     // `foo`, `bar` and `qux` are available as global variables
-    log(`foo: ${foo}`);
-    log(`bar: ${bar}`);
-    log(`qux: ${qux}`);
+    console.log(`foo: ${foo}`);
+    console.log(`bar: ${bar}`);
+    console.log(`qux: ${qux}`);
   })
   .catch(function (err) {
     // timeout error
-    log(`onGlobals error: ${err}`);
+    console.log(`onGlobals error: ${err}`);
   });
 ```
 
