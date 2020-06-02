@@ -26,7 +26,7 @@ onGlobal('myGlobal')
   });
 
 // Wait for multiple globals
-onGlobals(['foo', 'bar', 'qux'], { timeout: 10000 })
+onGlobals(['foo', 'bar', 'qux'])
   .then(function () {
     // `foo`, `bar` and `qux` are available as global variables
     log(`foo: ${foo}`);
@@ -40,3 +40,19 @@ onGlobals(['foo', 'bar', 'qux'], { timeout: 10000 })
 ```
 
 Running example at <https://codesandbox.io/s/on-global-bhksp>
+
+## API
+
+```ts
+onGlobal(target: string, options?: IOptions): Promise<void>
+onGlobals(targets: string[], opts?: IOptions): Promise<void>
+```
+
+### Default options
+
+```ts
+const defaults: IOptions = {
+  interval: 500,
+  timeout: 30000,
+};
+```

@@ -16,3 +16,7 @@ packages
 ### onGlobal
 
 [`on-global` documentation](src/on-global/README.md)
+
+### rxOnGlobal
+
+[`rx-on-global` documentation](src/rx-on-global/README.md)
