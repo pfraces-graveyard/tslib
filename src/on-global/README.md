@@ -6,13 +6,13 @@ Promise-based API
 ## Installation
 
 ```
-git clone https://github.com/wardays/tslib
+npm install @tslib/on-global
 ```
 
 ## Usage
 
 ```ts
-import { onGlobal, onGlobals } from '@wardays/on-global';
+import { onGlobal, onGlobals } from '@tslib/on-global';
 
 // Wait for a single global variable
 onGlobal('myGlobal')

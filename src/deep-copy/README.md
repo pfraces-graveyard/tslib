@@ -3,13 +3,13 @@
 ## Installation
 
 ```
-npm install @wardays/deep-copy
+npm install @tslib/deep-copy
 ```
 
 ## Usage
 
 ```ts
-import { deepCopy } from '@wardays/deep-copy';
+import { deepCopy } from '@tslib/deep-copy';
 const source = { foo: { bar: 123 } };
 const target = deepCopy(source);
 

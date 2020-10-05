@@ -20,3 +20,7 @@ packages
 ### rxOnGlobal
 
 [`rx-on-global` documentation](src/rx-on-global/README.md)
+
+### classNames
+
+[`classNames` documentation](src/class-names/README.md)

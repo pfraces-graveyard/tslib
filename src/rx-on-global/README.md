@@ -14,13 +14,13 @@ npm install rxjs
 ## Installation
 
 ```
-git clone https://github.com/wardays/tslib
+npm install @tslib/rx-on-global
 ```
 
 ## Usage
 
 ```ts
-import { onGlobal, onGlobals } from '@wardays/on-global';
+import { onGlobal, onGlobals } from '@tslib/rx-on-global';
 
 // wait for a single global variable
 onGlobal('google').subscribe(() => {
